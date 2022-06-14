@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}Virhe {{ errorcode }}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Virhe {{ errorcode }}</h1>
+    <p>Hupsista! Virheitä sattuu. <a href="{{ url_for('index') }}">Palaa kotisivulle
+    </a>.
+    </p>
+</div>
+
+{% endblock %}

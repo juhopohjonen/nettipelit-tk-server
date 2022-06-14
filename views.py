@@ -1,4 +1,6 @@
-
+import code
+from operator import is_
+from sre_parse import CATEGORIES
 from flask import Flask, redirect, render_template, request, Blueprint, abort, url_for
 from jinja2 import TemplateNotFound
 from app import app
@@ -16,23 +18,13 @@ loaded_categories = load_categories()
 
 @app.route('/')
 def index():
-    is_mobile = (request.args.get('isMobile') == 'true')
 
-    if is_mobile:
-        return render_template('main_index.html', 
-        best_games=get_best_mobile_games(games=loaded_games, limit=40, start=random.randint(1, 100)),
-        newest_games=get_best_mobile_games(games=loaded_games, limit=40, start=random.randint(100, 300)),
-        categories=loaded_categories,
-        isMobile=is_mobile
-        )
-    else:
-        return render_template('main_index.html', 
-        best_games=get_best_games(games=loaded_games, limit=40, start=random.randint(1, 100)),
-        newest_games=get_best_games(games=loaded_games, limit=40, start=random.randint(100, 300)),
-        categories=loaded_categories,
-        isMobile=is_mobile
 
-        )
+    return render_template('main_index.html', 
+    best_games=get_best_games(games=loaded_games, limit=40, start=random.randint(1, 100)),
+    newest_games=get_best_games(games=loaded_games, limit=40, start=random.randint(100, 300)),
+    categories=loaded_categories
+    )
 
 @app.route('/game')
 def view_game():
@@ -97,6 +89,20 @@ def category_list(categoryid):
 @app.route('/info')
 def info():
     return render_template('info.html', categories=loaded_categories)
+    
+@app.route('/tietosuoja')
+def tietosuoja():
+    return render_template('tietosuoja.html')
 
-# blueprints
 
+# ERRORS
+
+@app.errorhandler(404)
+def notfound(message):
+    app.logger.error(message)
+    return render_template('error.html', errorcode=404)
+
+@app.errorhandler(500)
+def internalError(message):
+    app.logger.error(message)
+    return render_template('error.html', errorcode=500)
