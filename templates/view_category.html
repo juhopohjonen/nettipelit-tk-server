@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ category['name'] }}{% endblock %}
+
+{% block addhead %}
+<meta name="description" content="Löydä helposti {{ category['name'] }} -kategoriaan kuuluvat pelit Nettipelit.tk:sta! Parhaat ilmaiset pelit löytyvät meiltä!">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Kategorian {{ category['name'] }} -pelit</h1>
+    <hr>
+
+
+        
+        <div class="row row-cols-auto">
+            {% for i in range(40) %}
+
+            <div class="col">
+                <div class="card gamebasecard">
+                  <div>
+                    <img src="{{ url_for('static', filename='placeholder.png') }}" class="card-img-top gamebaseimg">
+                    <div class="card-body">
+                        <h5 class="card-title placeholder-glow">
+                            <span class="placeholder col-6"></span>
+                        </h5>
+                        <p class="card-text placeholder-glow" id>
+                            <span class="placeholder col-7"></span>
+                            <span class="placeholder col-4"></span>
+                            <span class="placeholder col-4"></span>
+                            <span class="placeholder col-6"></span>
+                            <span class="placeholder col-8"></span>
+                        </p>
+                        <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
+
+                    </div>
+                  </div>
+                </div>
+                <br>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<script>
+    var categoryData = {{ categoryDataObj|tojson }};
+</script>
+
+<script src="{{ url_for('static', filename='js/categoryload.js') }}"></script>
+
+{% endblock %}

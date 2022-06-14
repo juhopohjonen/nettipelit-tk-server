@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block title %}Hakutulokset hakusanalle '{{ query }}'{% endblock %}
+
+{% block addhead %}
+<meta name="description" content="Nettipelit.tk:n hakukoneella voit hakea lukuisia eri hauskoja pelejä eri kategorioista. Tässä tulokset hakusanalle '{{ query }}'. Parhaat pelit löytyvät meiltä. Tervetuloa!">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <h1>Tulokset haulle '{{ query }}'</h1>
+
+        <form>
+        <div class="d-flex justify-content-center">
+            <input type="text" class="form-control" name="q" placeholder="Hakusana...">
+            <input class="btn btn-outline-success px-4" type="submit" value="Hae uudelleen"></button>
+        </div>
+  
+
+    <hr>
+    
+    {% if games != None %}
+
+
+    <div class="row row-cols-auto">
+        {% for game in games %}
+
+        <div class="col">
+            <div class="card game-card" style="width: 260px; height: 375px;">
+                <div class="position-relative">
+                <img src='{{ game["thumbnailUrl"] }}' style="height: 250px; width: 250px;" class="card-img-top game-img" alt="{{ game['title'] }}">
+                
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ game["title"] }} 
+
+                    </h5>
+                    <a href="{{ url_for('view_game') }}?id={{ game['id'] }}" class="btn btn-primary">Pelaa peliä</a>
+                </div>
+                </div>
+                <br>
+        </div>
+
+        {% endfor %}
+
+        {% else %}
+
+        <div class="alert alert-danger" role="alert">
+            Hakusanalla '{{ query }}' ei löytynyt tuloksia.
+        </div>
+
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

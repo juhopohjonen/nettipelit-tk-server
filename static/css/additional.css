@@ -1,0 +1,22 @@
+.game-img {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 2.5px;
+
+
+    height: 250px; width: 250px;
+
+
+}
+
+
+
+.main-loader {
+    width: 100px;
+    height: 100px;
+}
+
+.gamebaseimg {
+    width: 250px; 
+    height: 250px;
+}

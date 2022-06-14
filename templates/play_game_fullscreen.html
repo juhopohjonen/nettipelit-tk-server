@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Pelaa peliä '{{ game['title'] }}'
+{% endblock %}
+
+{% block addhead %}
+<meta name="description" content='Nettipelit.tk:ssa voit pelata hauskaa ilmaispeliä nimeltä {{ game["title"] }}, joka kuuluu kategoriaan {{ game["category"] }}. Hauskat pelit löytyvät meiltä!'>
+{% endblock %}
+
+
+{% block content %}
+
+<iframe src="{{ game['url'] }}"></iframe>
+<br>
+
+<p style="text-align: center;">
+    <a class="btn btn-outline-secondary homebutton" href="{{ url_for('index') }}">Palaa etusivulle</a>
+</p>
+
+
+<style>
+    body {
+        margin: 0;
+    }
+
+    iframe {
+        display: block;
+        background: #000;
+        border: none;
+        height: 80vh;
+        width: 80vw;
+
+        margin: auto;
+    }
+
+    .homebutton {
+        width: 80vw;
+        margin: auto;
+    }
+</style>
+
+{% endblock %}

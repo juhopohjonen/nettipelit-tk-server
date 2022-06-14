@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+Tietoa Nettipelit.tk:sta
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <h1>Usein kysytyt kysymykset ja tietoa</h1>
+    <p class="lead">Nettipelit.tk on uusi, vuonna 2022 perustettu pelisivusto. Otetaan selvää, mikä Nettipelit.tk:n idea on ja kuka on sen takana.</p>
+
+    <hr>
+
+    <h2>Mikä Nettipelit.tk oikein on?
+    </h2>
+    <p>Niin kuin nimestä saattaakin arvella, Nettipelit.tk on pelisivusto, itseasiassa tarkemmin sanottuna <i>peliportaali</i>. Peliportaali tarkoittaa sitä, että sivustolla löydät lukuisia eri pelejä
+    keskitettynä eri paikkaan. Pelit ovat siis eri kehittäjiltä, jotka ovat itse halunneet, että pelit julkaistaan eri peliportaaleissa tai sivustoilla.</p>
+
+    <p>
+
+    Tarjoamme erilaisia palveluita, esimerkiksi <a class="btn btn-outline-light btn-sm" href="{{ url_for('search') }}">hakutyökalun</a> jonka avulla voit hakea juuri sinulle sopivan pelin.
+    </p>
+
+    
+
+    <h2>Ketkä tekevät sivustolla olevat pelit? Miten heille maksetaan?</h2>
+    <p>Sivustolla olevat pelit tekevät pelikehittäjät, jotka haluavat julkaista pelinsä eri peliportaaleihin. Sivusto on mainosrahoitteinen, ja pelin kehittäjille maksetaan <b>suurin osa</b> pelin yhteydessä esitetyistä mainoksista. Yhteistyökumppanimme vastaa maksuista
+    ja pelien yhteydessä esitetyistä mainoksista.</p>
+
+    
+
+    <h3>Kuka sivuston takana on? Kuka sivuston on tehnyt?
+    </h3>
+
+    <p>Sivusto on tehty harrastusprojektina. Nykyinen versio on kehitetty muutamassa päivässä kesälomalla 2022. Sivuston on kehittänyt nuori Suomesta.</p>
+    
+
+    <h4>Sivuston 'stäkki' - Mitä teknologioita käytämme?</h4>
+    <p>Sivuston nykyinen versio on kehitetty käyttäen <a href="https://flask.palletsprojects.com/en/2.1.x/">Flask -ohjelmistokehystä</a>. Käytämme palvelimena <a href="https://gunicorn.org/">Gunicorn</a> -wsgi-palvelinta ja reverse proxynä NGINX-ohjelmistoa.
+    Toimitamme sivuston asiakkaalle käyttäen Cloudflare:n DNS-palvelua.</p>
+
+    <p>Kiitos kaikille avoimen lähdekoodin ohjelmistojen kehittäjille tämän sivuston luomisen mahdollistamisesta.</p>
+
+    <hr>
+
+    <h3>Yhteystiedot</h3>
+    <p>Jos olet kiinnostunut mainostamaan verkkosivuilla tai julkaisemaan pelin, voit ottaa yhteyttä sähköpostilla osoitteeseen <a href="mailto:support@nettipelit.tk">support@nettipelit.tk</a>. Teemme mielellämme yhteistyötä pelikehittäjien kanssa.</p>
+
+</div>
+
+{% endblock %}
+    
+
+
