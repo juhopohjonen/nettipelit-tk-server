@@ -1,5 +1,4 @@
-from operator import is_
-from sre_parse import CATEGORIES
+
 from flask import Flask, redirect, render_template, request, Blueprint, abort, url_for
 from jinja2 import TemplateNotFound
 from app import app
