@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 from app import app
 
 from markupsafe import escape
@@ -6,6 +6,9 @@ from markupsafe import escape
 import views
 
 SEARCH_RESULTS_LIMIT = 50
+QUERY_WORD_LIMIT = 5
+QUERY_CHAR_LIMIT = 30
+
 
 @app.route('/search')
 def search():
@@ -13,38 +16,41 @@ def search():
 
     if query == None:
         return render_template('search.html')
+    elif len(query.split()) > QUERY_WORD_LIMIT or len(query) > QUERY_CHAR_LIMIT:
+        return render_template('error.html', errorcode='Liian pitkä hakusana!'), 400
 
-    search_query = query.lower()
+    search_queries = query.lower().split()
 
     query_results = []
-    
-    for game in views.loaded_games:
-        wordlist = []
 
-        # add words to wordlist
+    for search_query in search_queries:
+        for game in views.loaded_games:
+            wordlist = []
 
-        description_wordlist = game["description"].split()
+            # add words to wordlist
 
-        for word in description_wordlist:
-            wordlist.append(word.lower())
-        
-        title_wordlist = game["title"].split()
+            description_wordlist = game["description"].split()
 
-        for word in title_wordlist:
-            wordlist.append(word.lower())
+            for word in description_wordlist:
+                wordlist.append(word.lower())
 
-        
-        containsRelatedWords = False
+            title_wordlist = game["title"].split()
 
-        for word in wordlist:
-            if search_query in word and containsRelatedWords == False:
-                containsRelatedWords = True
-            elif containsRelatedWords:
-                break
+            for word in title_wordlist:
+                wordlist.append(word.lower())
 
-        if containsRelatedWords:
-            query_results.append(game)
-        
+
+            containsRelatedWords = False
+
+            for word in wordlist:
+                if search_query in word and containsRelatedWords == False:
+                    containsRelatedWords = True
+                elif containsRelatedWords:
+                    break
+
+            if containsRelatedWords:
+                query_results.append(game)
+
 
     if len(query_results) == 0:
         # NO GAMES FOUND, return with 404
