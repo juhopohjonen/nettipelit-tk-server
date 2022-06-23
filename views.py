@@ -90,7 +90,7 @@ def info():
     
 @app.route('/tietosuoja')
 def tietosuoja():
-    return render_template('tietosuoja.html')
+    return render_template('tietosuoja.html', categories=loaded_categories)
 
 
 # ERRORS
@@ -98,9 +98,9 @@ def tietosuoja():
 @app.errorhandler(404)
 def notfound(message):
     app.logger.error(message)
-    return render_template('error.html', errorcode=404)
+    return render_template('error.html', errorcode=404, categories=loaded_categories)
 
 @app.errorhandler(500)
 def internalError(message):
     app.logger.error(message)
-    return render_template('error.html', errorcode=500)
+    return render_template('error.html', errorcode=500, categories=loaded_categories)
